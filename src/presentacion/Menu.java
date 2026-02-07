@@ -1,14 +1,14 @@
 package presentacion;
 
 import dominio.*;
-import servicio.IServiciosDeCalculadora;
-import servicio.ServiciosDeCalculadora;
+import servicio.*;
 
 import java.util.Scanner;
 
 public class Menu
 {
     private static final Scanner entrada = new Scanner(System.in);
+    private static final IServiciosAuditoria auditoria=new ServiciosAuditoriaArchivo();
 
     //interfaz de implementacion
 
@@ -17,7 +17,7 @@ public class Menu
     public static void main(String[] args)
     {
         var salir = false;
-
+        auditoria.registrarAuditoria("inicio","se inicio el programa");
         try {
             while (!salir)
             {
@@ -36,7 +36,7 @@ public class Menu
     private static void MenuEcuacionesAritmeticas()
     {
         var salir = false;
-
+        auditoria.registrarAuditoria("Menu","se ejecuto el menu de operaciones aritmeticas");
         try {
             while (!salir)
             {
@@ -64,6 +64,8 @@ public class Menu
                         //declaramos una nueva variable para enviar los datos y mostrar un resultado
                         EcuAritmeticas Datos = new EcuAritmeticas(num1, num2);
                         System.out.println("El resultado de la suma es: " + calculadora.suma(Datos));
+                        auditoria.registrarAuditoria("Suma","Los numeros ingresado "+num1+" y "+ num2 +" dan como resultado: "+calculadora.suma(Datos));
+
                     }
                     case 2 ->
                     {
@@ -74,7 +76,8 @@ public class Menu
                         double num2 = Double.parseDouble(entrada.nextLine());
                         //declaramos una nueva variable para enviar los datos y mostrar un resultado
                         EcuAritmeticas Datos = new EcuAritmeticas(num1, num2);
-                        System.out.println("El resultado de la suma es: " + calculadora.resta(Datos));
+                        System.out.println("El resultado de la resta es: " + calculadora.resta(Datos));
+                        auditoria.registrarAuditoria("Resta","Los numeros ingresados "+num1+" y "+" dan como resultado: "+calculadora.resta(Datos));
                     }
                     case 3 ->
                     {
@@ -85,7 +88,8 @@ public class Menu
                         double num2 = Double.parseDouble(entrada.nextLine());
                         //declaramos una nueva variable para enviar los datos y mostrar un resultado
                         EcuAritmeticas Datos = new EcuAritmeticas(num1, num2);
-                        System.out.println("El resultado de la suma es: " + calculadora.multiplicacion(Datos));
+                        System.out.println("El resultado de la multiplicacion es: " + calculadora.multiplicacion(Datos));
+                        auditoria.registrarAuditoria("Multiplicacion","Los numeros ingresados "+num1+" y "+num2+ "dan como resultado: "+calculadora.multiplicacion(Datos));
                     }
                     case 4 ->
                     {
@@ -96,7 +100,8 @@ public class Menu
                         double num2 = Double.parseDouble(entrada.nextLine());
                         //declaramos una nueva variable para enviar los datos y mostrar un resultado
                         EcuAritmeticas Datos = new EcuAritmeticas(num1, num2);
-                        System.out.println("El resultado de la suma es: " + calculadora.div(Datos));
+                        System.out.println("El resultado de la division es: " + calculadora.div(Datos));
+                        auditoria.registrarAuditoria("Division"," Los numeros ingresados "+num1+" y "+num2+"dan como resultado: "+calculadora.div(Datos));
                     }
                     case 0 -> salir = true;
                     default -> System.out.println("Opción inválida.");
@@ -111,6 +116,7 @@ public class Menu
     //MENU OPERACIONES LOGARITMICAS
     private static void MenuEcuacionesLogaritmicas()
     {
+        auditoria.registrarAuditoria("Menu","Se inicio el menu de logaritmos");
         var salir = false;
 
         try {
@@ -135,6 +141,7 @@ public class Menu
                         //declaramos una nueva variable para enviar los datos y mostrar un resultado
                         EcuLogaritmicas Datos = new EcuLogaritmicas(num);
                         System.out.println("Resultado: "+calculadora.logaritmoNatural(Datos));
+                        auditoria.registrarAuditoria("Logaritmos naturales"," El numero ingresado "+num+" da como resultado: "+calculadora.logaritmoNatural(Datos));
 
                     }
                     case 2 ->
@@ -145,6 +152,7 @@ public class Menu
                         //declaramos una nueva variable para enviar los datos y mostrar un resultado
                         EcuLogaritmicas Datos = new EcuLogaritmicas(num);
                         System.out.println("Resultado: "+calculadora.logaritmobase10(Datos));
+                        auditoria.registrarAuditoria("Logaritmos base 10"," El numero ingresado "+num+" da como resultado: "+calculadora.logaritmobase10(Datos));
                     }
 
                     case 0 -> salir = true;
@@ -162,6 +170,7 @@ public class Menu
     //SUB MENU OPERACIONES TRIGONOMETRICAS
     private static void MenuEcuacionesTrigonometricas()
     {
+        auditoria.registrarAuditoria("Menu","Se inicio el menu de trigonometria");
         var salir = false;
 
         try
@@ -189,6 +198,7 @@ public class Menu
                         //declaramos una nueva variable para enviar los datos y mostrar un resultado
                         EcuTrigonometricas Datos = new EcuTrigonometricas(num);
                         System.out.println("Resultado: "+calculadora.seno(Datos));
+                        auditoria.registrarAuditoria("Seno"," El seno de "+num+" da como resultado: "+calculadora.seno(Datos));
                     }
                     case 2 ->
                     {
@@ -199,6 +209,7 @@ public class Menu
                         //declaramos una nueva variable para enviar los datos y mostrar un resultado
                         EcuTrigonometricas Datos = new EcuTrigonometricas(num);
                         System.out.println("Resultado: "+calculadora.coseno(Datos));
+                        auditoria.registrarAuditoria("Coseno"," El coseno de "+num+" da como resultado: "+calculadora.coseno(Datos));
                     }
                     case 3 ->
                     {
@@ -209,6 +220,7 @@ public class Menu
                         //declaramos una nueva variable para enviar los datos y mostrar un resultado
                         EcuTrigonometricas Datos = new EcuTrigonometricas(num);
                         System.out.println("Resultado: "+calculadora.tangente(Datos));
+                        auditoria.registrarAuditoria("Tangente"," El tangente de"+num+" da como resultado: "+calculadora.tangente(Datos));
                     }
 
                     case 0 -> salir = true;
@@ -230,6 +242,7 @@ public class Menu
                 1. Operaciones Aritmetica
                 2. Operaciones Logaritmo
                 3. Operaciones Trigonometria
+                4. Historial
                 0. Salir
                 """);
         System.out.println("Ingrese una opcion: ");
@@ -253,6 +266,12 @@ public class Menu
             case 3 ->
             {
                 MenuEcuacionesTrigonometricas();
+            }
+
+            case 4 ->
+            {
+                System.out.println("Historial del programa");
+                auditoria.mostrarAuditoria();
             }
 
             case 0 ->

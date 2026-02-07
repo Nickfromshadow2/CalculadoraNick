@@ -6,7 +6,6 @@ import dominio.EcuTrigonometricas;
 
 public class ServiciosDeCalculadora implements IServiciosDeCalculadora
 {
-
     //Aritmetica
     @Override
     public double suma(EcuAritmeticas datos)
