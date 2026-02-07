@@ -1,0 +1,3 @@
+[07/02/2026 15:22:55] ACCIÓN: inicio          | DETALLE: se inicio el programa
+[07/02/2026 15:22:57] ACCIÓN: Menu            | DETALLE: se ejecuto el menu de operaciones aritmeticas
+[07/02/2026 15:23:00] ACCIÓN: Suma            | DETALLE: Los numeros ingresado 3.0 y 5.0 dan como resultado: 8.0
