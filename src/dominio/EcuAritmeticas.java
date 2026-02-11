@@ -6,7 +6,6 @@ public class EcuAritmeticas
 
     public EcuAritmeticas()
     {
-
     }
 
     public EcuAritmeticas(double num1, double num2)
